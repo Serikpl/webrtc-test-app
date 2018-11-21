@@ -1,0 +1,62 @@
+Problem appears between Firefox and some of other browsers (like Chrome or Opera), 
+it doesn't appear in cases like Firefox <-> FireFox, Chrome <-> Chrome, Chrome <-> Opera, Opera <-> Opera.
+
+Browsers version (that was tested): 
+Chrome - 69.0.3497.100 
+Firefox - 62.0.3
+Opera - 56.0.3051.43
+
+Problem description:
+After the first switch to video all work fine but then after switch to audio and again 
+to video remote stream don't appear for user that doesn't use Firefox it means that Firefox's 
+peer connection has a problem with adding localstream. 
+It looks like FireFox removeTrack() function works different then in other browsers, because in FireFox 
+removed sender stays in peerconnection object but in another browsers not, that is showed in console.
+And in Chrome doesn't execut event 'onTrack' after adding new video track in FireFox.
+
+
+__Instruction of app (steps to reproduce):
+1) open app in 2 different browsers (e.g. Firefox and chrome, or in 2 tab of one browser) 
+(for it enter command "npm start" in console, and app have to started on localhost:4200) 
+2) choose current user (different for every browser) 
+3) choose user to call (click in user id from list or copy id to input that is above buttons) 
+4) click button  "call audio"
+5) for calle (receiver) user click button 'accept'  in popup about incoming call
+6) after call established and audio is appeared click button "switch to video"
+7) for calle (receiver) user click button 'accept video'  in popup about request switch to video chat
+8) for some of users click button "switch to audio"
+9) and again click to "switch to video", 
+10) after accpet video in another user and we can see like one of users don't get remote stream, there that is problem!
+
+___Switch stream scenario___ 
+
+@For switch to video initiator:
+1) click button 'switch to video'  
+2) execute getStream() 
+3) addTrack() to local stream
+4) add stream for video element
+5) addTrack() to localPeer 
+6) send request for video by WS (websocket) - signaling
+7) event negotiationneeded executed and renegotiation starts
+8) waiting for accept video request from another user
+
+after accept:
+9) incoming WS message about confirmation about switch to video
+10*) (if current user is initiator of call!) incoming request from another user to renegotiation 
+10.1) renegotiation
+
+@For receiver of switch to video request:
+1) incoming message with switch to video request 
+2) popup with switch to video request are showed 
+3) asynchronously started renegotiation started by another user
+
+after accpet video request:
+4) execute getStream() 
+5) addTrack() to local stream
+6) add stream for video element
+7) addTrack() to localPeer 
+8) send confirmation of accept video by WS
+9*) renegotiations event executs and (if current user is NOT initiator of call!) send request to another user about renegotiation 
+10.1) renegotiation starts
+
+After that video chat has be established and every user shoud have local and remote video streams.
