@@ -1,0 +1,301 @@
+.calc(@prop;@val) {
+    @{prop}: calc(~'@{val}');
+    @{prop}: -moz-calc(~'@{val}');
+    @{prop}: -webkit-calc(~'@{val}');
+    @{prop}: -o-calc(~'@{val}');
+}
+
+.display-flex() {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+}
+
+.animation-play-state(@state) {
+    -webkit-animation-play-state: @state;
+    -moz-play-state: @state;
+    -o-animation-play-state: @state;
+    animation-play-state: @state;
+}
+
+.align-items(@param) {
+    -webkit-box-align: @param;
+    -moz-box-align: @param;
+    -ms-flex-align: @param;
+    -webkit-align-items: @param;
+    align-items: @param;
+}
+
+.align-self(@align) {
+    -webkit-align-self: @align;
+    -moz-align-self: @align;
+    -ms-align-self: @align;
+    align-self: @align;
+}
+
+.align-content(@align: stretch) {
+    -webkit-align-content: @align;
+    -ms-align-content: @align;
+    align-content: @align;
+}
+
+.justify-content(@param) {
+    -webkit-justify-content: @param;
+    -ms-justify-content: @param;
+    -ms-flex-pack: @param;
+    justify-content: @param;
+}
+
+.flex-direction(@param) {
+    -webkit-box-direction: @param;
+    -moz-box-direction: @param;
+    -webkit-box-orient: @param;
+    -moz-box-orient: @param;
+    -webkit-flex-direction: @param;
+    -ms-flex-direction: @param;
+    flex-direction: @param;
+}
+
+.flex-wrap(@wrap: nowrap) {
+    -webkit-flex-wrap: @wrap;
+    -ms-flex-wrap: @wrap;
+    flex-wrap: @wrap;
+}
+
+.transform-origin(@arguments) {
+  -webkit-transform-origin: @arguments;
+     -moz-transform-origin: @arguments;
+      -ms-transform-origin: @arguments;
+       -o-transform-origin: @arguments;
+          transform-origin: @arguments;
+}
+
+.inline-flex() {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+    text-shadow: @string;
+}
+
+.box-shadow (@string) {
+    -webkit-box-shadow: @string;
+    -moz-box-shadow: @string;
+    box-shadow: @string;
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+    -webkit-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+    -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.box-sizing (@type: border-box) {
+    -webkit-box-sizing: @type;
+    -moz-box-sizing: @type;
+    box-sizing: @type;
+}
+
+.blur(@px: 1px) {
+    -webkit-filter: blur(@px);
+    filter: blur(@px);
+}
+
+.flex-grow(@grow: 0) {
+    -webkit-flex-grow: @grow;
+    -ms-flex-grow: @grow;
+    flex-grow: @grow;
+}
+
+.flex-shrink(@shrink: 1) {
+    -webkit-flex-shrink: @shrink;
+    -ms-flex-shrink: @shrink;
+    flex-shrink: @shrink;
+}
+
+.breakless() {
+    .flex-grow(0);
+    .flex-shrink(0);
+}
+
+.flex-order(@order: 0) {
+    -webkit-order: @order;
+    -ms-order: @order;
+    order: @order;
+}
+
+.border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+    -webkit-border-top-right-radius: @topright;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -webkit-border-bottom-left-radius: @bottomleft;
+    -webkit-border-top-left-radius: @topleft;
+    -moz-border-radius-topright: @topright;
+    -moz-border-radius-bottomright: @bottomright;
+    -moz-border-radius-bottomleft: @bottomleft;
+    -moz-border-radius-topleft: @topleft;
+    border-top-right-radius: @topright;
+    border-bottom-right-radius: @bottomright;
+    border-bottom-left-radius: @bottomleft;
+    border-top-left-radius: @topleft;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.opacity (@opacity: 0.5) {
+    -webkit-opacity: @opacity;
+    -moz-opacity: @opacity;
+    opacity: @opacity;
+}
+
+.gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor, @endColor);
+    background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+    background-image: -moz-linear-gradient(left, @startColor, @endColor);
+    background-image: -ms-linear-gradient(left, @startColor, @endColor);
+    background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.keyframes(@name;
+@arguments) {
+    @-moz-keyframes @name {
+        @arguments();
+    }
+    @-webkit-keyframes @name {
+        @arguments();
+    }
+    @keyframes @name {
+        @arguments();
+    }
+}
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease, @loop: infinite) {
+    -webkit-animation: @name @duration @loop @ease ;
+    -moz-animation: @name @duration @loop @ease ;
+    -ms-animation: @name @duration @loop @ease ;
+    -o-animation: @name @duration @loop @ease ;
+    animation: @name @duration @loop @ease ;
+}
+
+.transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+}
+
+.transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+}
+
+.scale (@factor) {
+    -webkit-transform: scale(@factor);
+    -moz-transform: scale(@factor);
+    -ms-transform: scale(@factor);
+    -o-transform: scale(@factor);
+}
+
+.rotate (@deg) {
+    -webkit-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+}
+
+.skew (@deg, @deg2) {
+    -webkit-transform: skew(@deg, @deg2);
+    -moz-transform: skew(@deg, @deg2);
+    -ms-transform: skew(@deg, @deg2);
+    -o-transform: skew(@deg, @deg2);
+}
+
+.translate (@x, @y: 0) {
+    -webkit-transform: translate(@x, @y);
+    -moz-transform: translate(@x, @y);
+    -ms-transform: translate(@x, @y);
+    -o-transform: translate(@x, @y);
+}
+
+.translate3d (@x, @y: 0, @z: 0) {
+    -webkit-transform: translate3d(@x, @y, @z);
+    -moz-transform: translate3d(@x, @y, @z);
+    -ms-transform: translate3d(@x, @y, @z);
+    -o-transform: translate3d(@x, @y, @z);
+}
+
+.perspective (@value: 1000) {
+    -webkit-perspective: @value;
+    -moz-perspective: @value;
+    -ms-perspective: @value;
+    perspective: @value;
+}
+
+.transform-origin (@x: center, @y: center) {
+    -webkit-transform-origin: @x @y;
+    -moz-transform-origin: @x @y;
+    -ms-transform-origin: @x @y;
+    -o-transform-origin: @x @y;
+}
+
+.opacity(@opacity) {
+    opacity: @opacity / 100;
+    filter:~"alpha(opacity=@{opacity})";
+}
+
+.flex-center() {
+    .display-flex();
+    .justify-content(center);
+    .align-items(center);
+}
+
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        @rules();
+    }
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        @rules();
+    }
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        @rules();
+    }
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        @rules();
+    }
+}

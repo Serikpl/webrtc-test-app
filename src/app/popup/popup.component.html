@@ -1,0 +1,9 @@
+<section class="popup" *ngIf="isShowed" [@popup-close]='"in"'>
+  <div class="popup-content" [@popup-content] (@popup-content.done) = "emitCallback()"
+  [ngStyle]='{"max-width": units_size}' [ngClass]='class_size'>
+    <ng-content></ng-content>
+  </div>
+
+  <div *ngIf='closeAble' class="close-bg" (click)='(closeFunc) ? close(closeFunc) : close()'></div>
+  <div *ngIf='!closeAble' class="close-bg"></div>
+</section>

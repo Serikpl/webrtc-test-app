@@ -1,0 +1,123 @@
+<section>
+
+  <div class="info_call">
+    <div>
+      <h2 *ngIf='currentUser'>You are: User {{ currentUser }}</h2>
+    </div>
+
+    <div>
+      <h3>Call state: {{ callState }} </h3>
+      <span>(-1 - close, 6 - started)</span>
+
+      <h5>with video: {{ withVideo }}</h5>
+
+      <p *ngIf ='userToCallModel' >User to call: {{ userToCallModel.name + ' ' + userToCallModel.last_name }}</p>
+    </div>
+
+    <div>
+      <h3>Users: </h3>
+      <ul>
+        <li *ngFor='let user of usersForTests' class="t_user">
+          <p> <b>{{ user.name }}</b> - <input (click)='selectUserId(user.id)' value='{{ user.id }}'>  <span>{{ user.number }}</span></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="videos">
+    <div class="remote_cont">
+      <video autoplay playsinline #remoteVideo class="remote_video"></video>
+      <h5>Remote video</h5>
+    </div>
+    <div class="my_v_cont">
+      <video autoplay playsinline muted #localVideo class="my_video"></video>
+      <h5>Local video</h5>
+    </div>
+
+    <div class="fake_v">
+      <canvas #fakeVideo></canvas>
+    </div>
+  </div>
+
+  <div class="tools">
+    <label for="">
+      User (id) to call:
+      <input type="text" [(ngModel)]='userToCallId'>
+    </label>
+
+    <div class="btns">
+      <button class='btn btn-success' [disabled]='callState !== -1' (click)='initCall(false)'>Call audio</button>
+      <button class='btn btn-success' [disabled]='callState !== -1' (click)='initCall(true)'>Call video</button>
+      <button class='btn btn-primary' (click)='switchVideo()'>Switch to {{ (withVideo) ? "audio" : "video"}}</button>
+      <!-- <button class='btn btn-primary' (click)='switchVideo()'>Only audio</button> -->
+
+      <button class="btn btn-warning"  (click)='muteLocalAudioTrack(!callMuted)'>Mute (muted: {{callMuted}})</button>
+
+      <button class='btn btn-danger' (click)='endCall()'>Hang up</button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- POPUP VIDEO REQUEST -->
+<app-popup #chooseUserPopup [closeAble]='false' [size]='"normal_b"'>
+
+  <div class="popup-head text-center">
+    <h4 class="title">Choose one of the users (current user)</h4>
+  </div>
+
+  <div class="popup-body">
+    <select name="user" [(ngModel)]='currentUser' (change)='userChosen()'>
+      <option value='' disabled selected>Choose user</option>
+      <option value="1">User 1</option>
+      <option value="2">User 2</option>
+    </select>
+  </div>
+
+</app-popup>
+<!-- END POPUP -->
+
+<!-- POPUP VIDEO REQUEST -->
+<app-popup #callConfirmPopup [closeAble]='false' [size]='"normal_b"'>
+
+  <div class="popup-head text-center">
+    <h4 class="title">Incoming call from: <span *ngIf='userToCallModel'> {{ userToCallModel.name + ' ' + userToCallModel.last_name }}</span></h4>
+  </div>
+
+  <div class="popup-body">
+    <button class="btn btn-success" (click)='acceptCall()'>
+      accept
+    </button>
+
+    <button class="btn btn-danger" (click)='rejectCall()'>
+      refuse
+    </button>
+  </div>
+
+</app-popup>
+<!-- END POPUP -->
+
+<!-- POPUP VIDEO REQUEST -->
+<app-popup #videoConfirmPopup class="confirm-video-popup" [closeAble]='false' [size]='"normal_b"'>
+
+  <div class="popup-head text-center">
+    <h4 class="title">video call</h4>
+  </div>
+
+  <div class="popup-body">
+    <div *ngIf='userToCallModel'>
+      Do you accept request for switch to video chat?
+    </div>
+
+    <button class="btn btn-danger" (click)='refuseVideo()'>
+      no
+    </button>
+
+    <button class="btn btn-primary" (click)='acceptVideo()'>
+      yes
+    </button>
+  </div>
+
+</app-popup>
+<!-- END POPUP -->

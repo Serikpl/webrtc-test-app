@@ -1,0 +1,201 @@
+@import '../../assets/__mixins';
+@import '../../assets/__config';
+
+::ng-deep {
+  select{
+    width: 180px;
+    height: 40px;
+  }
+    .small-container {
+        .popup-body {
+            padding: 10px 20px;
+        }
+    }
+    .default-form {
+        min-height: initial;
+    }
+    .popup {
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow-y: auto;
+        .flex-center();
+        textarea {
+            width: 100%;
+            resize: none;
+            border-bottom: 2px solid @border-color;
+            font-family: 'Roboto';
+            font-size: 14px;
+            .placeholder( {
+                font-family: 'Roboto';
+            }
+            );
+        }
+    }
+    .confirmation {
+        text-align: center;
+        padding: 20px 0 0 0;
+        button {
+            &.btn {
+                margin: 5px 8px;
+            }
+        }
+    }
+    button {
+        &[role="close"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 32px;
+            width: 32px;
+            padding: 10px;
+            img {
+                width: 12px;
+                height: 12px;
+                display: block;
+            }
+        }
+    }
+    .error-message {
+        text-align: left;
+        font-size: 12px;
+        line-height: 14px;
+        color: @danger;
+    }
+    .popup-content {
+        z-index: 10;
+        padding: 20px;
+        position: relative;
+        background: @white;
+        max-width: 1058px;
+        width: 94%;
+        .description{
+          padding-bottom: 8px;
+        }
+        &.wide_b {
+            max-width: 800px;
+        }
+        &.normal_b {
+            max-width: 480px;
+            .popup-body {
+                padding: 0;
+            }
+            .popup-head {
+                padding: 0;
+                padding-top: 12px;
+                .title {
+                    font-size: 24px;
+                    color: @black;
+                    text-align: left;
+                    letter-spacing: 0.01em;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        &.small_b {
+            max-width: 450px;
+        }
+        &.xsmall_b {
+            max-width: 308px;
+        }
+        &.small_b,
+        &.xsmall_b {
+            max-width: 308px;
+            .popup-head {
+                min-height: auto;
+                padding: 10px 15px;
+            }
+            .popup-body {
+                padding: 0;
+                padding-top: 12px;
+            }
+        }
+    }
+    .popup-body {
+        padding: 30px;
+        padding-top: 10px;
+        text-align: center;
+        ::ng-deep {
+            ng-scrollbar {
+                .ng-scrollbar-view {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    max-height: 530px;
+                }
+            }
+        }
+        button {
+            margin-top: 15px;
+            &:nth-child(2):not(:last-child) {
+              margin-right: 20px;
+            }
+        }
+    }
+    .popup-head {
+        .display-flex();
+        .align-items(center);
+        .justify-content(space-between);
+        padding: 22.5px 20px; // border: 1px solid @border-color;
+        .border-radius(1px); // .box-shadow(0px 2px 10px 0px rgba(0, 0, 0, 0.12));
+    }
+    button.close-btn {
+        height: 32px;
+        width: 32px;
+        font-size: 14px;
+        color: @blue-color;
+        text-align: right;
+        letter-spacing: 0.01em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        img {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+
+.popup-body {
+    padding: 30px;
+    padding-top: 10px;
+    ::ng-deep {
+        ng-scrollbar {
+            .ng-scrollbar-view {
+                overflow-y: auto;
+                overflow-x: hidden;
+                max-height: 530px;
+            }
+        }
+    }
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 500;
+    color: @title-color;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(19, 19, 19, 1);
+}
+
+button.btn {
+    margin: 30px 5px 0px;
+}
+
+.close-bg {
+    z-index: 1;
+    cursor: pointer;
+    background-color: @modal-bg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

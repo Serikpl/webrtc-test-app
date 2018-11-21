@@ -1,0 +1,68 @@
+video{
+  border: 1px solid #ccc;
+  margin: 1px;
+  &.my_video{
+    max-width: 300px;
+  }
+  &.remote_video{
+    min-width: 600px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 300px;
+  }
+}
+canvas{
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.videos{
+  display:flex;
+  padding-bottom: 40px;
+  margin-bottom: 50px;
+  border-bottom: 3px solid #ccc;
+  &>div{
+    margin-right: 50px;
+  }
+}
+.t_user{
+  input{
+    background: transparent;
+    border: 0;
+    cursor: copy;
+    &:hover, &:active, &:focus {
+      background-color: #ccc;
+    }
+  }
+}
+.info_call{
+  display: flex;
+  &>div{
+    margin-right: 50px;
+  }
+}
+input{
+  width: 400px;
+  padding: 3px 5px;
+  border: 1px solid rgba(204, 204, 204, 0.8);
+}
+.btn{
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  color: #fff;
+  &.btn-success{
+    background-color: rgba(74, 163, 116, 1);
+  }
+  &.btn-primary{
+    background-color: blue;
+  }
+  &.btn-warning{
+    background-color: rgb(238, 162, 54);
+  }
+  &.btn-danger{
+    background-color: red;
+  }
+}
